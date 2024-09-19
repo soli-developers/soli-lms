@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\pkg_competences\niveauxCompetencesAlreadyExistException;
 
 /**
- * Classe TaskRepository qui gère la persistance des tasks dans la base de données.
+ * Classe TaskRepository qui gère la persistance des NiveauCompetence dans la base de données.
  */
 class niveauxCompetencesRepository extends BaseRepository
 {
     /**
-     * Les champs de recherche disponibles pour les tasks.
+     * Les champs de recherche disponibles pour les NiveauCompetence.
      *
      * @var array
      */
@@ -42,17 +42,19 @@ class niveauxCompetencesRepository extends BaseRepository
     /**
      * Crée un nouveau task.
      *
-     * @param array $data Données du task à créer.
+     * @param array $data Données du NiveauCompetence à créer.
      * @return mixed
-     * @throws niveauxCompetencesAlreadyExistException Si le task existe déjà.
+     * @throws niveauxCompetencesAlreadyExistException Si le NiveauCompetence existe déjà.
      */
     public function create(array $data)
     {
         $nom = $data['nom'];
+        $description = $data['description'];
 
-        $existingProject =  $this->model->where('nom', $nom)->exists();
+        $existingNiveauCompetence =  $this->model->where('nom', $nom)->exists();
+        $existingNiveauCompetence =  $this->model->where('description', $description)->exists();
 
-        if ($existingProject) {
+        if ($existingNiveauCompetence) {
             throw niveauxCompetencesAlreadyExistException::createNiveauxCompetences();
         } else {
             return parent::create($data);
@@ -60,7 +62,7 @@ class niveauxCompetencesRepository extends BaseRepository
     }
 
     /**
-     * Recherche les tasks correspondants aux critères spécifiés.
+     * Recherche les NiveauCompetence correspondants aux critères spécifiés.
      *
      * @param mixed $searchableData Données de recherche.
      * @param int $perPage Nombre d'éléments par page.

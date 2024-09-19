@@ -19,18 +19,16 @@ return new class extends Migration
             $table->foreign('competence_id')->references('id')->on('competences')->onDelete('cascade');
             $table->unsignedBigInteger('appreciation_id');
             $table->foreign('appreciation_id')->references('id')->on('appreciations')->onDelete('cascade');
-            $table->unsignedBigInteger('technologie_id');
-            $table->foreign('technologie_id')->references('id')->on('technologies')->onDelete('cascade');
 
             $table->timestamps();
         });
 
         Schema::create('transfert_competence_technologie', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('technologie_id');
-            $table->foreign('technologie_id')->references('id')->on('technologies')->onDelete('cascade');
             $table->unsignedBigInteger('transfert_competence_id');
             $table->foreign('transfert_competence_id')->references('id')->on('transfert_competences')->onDelete('cascade');
+            $table->unsignedBigInteger('appreciation_id');
+            $table->foreign('appreciation_id')->references('id')->on('appreciations')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,0 +1,27 @@
+%% Diagramme de package
+%% Note: Les packages sont représentés en tant que rectangles, et les relations entre les packages sont indiquées par des flèches.
+%% Les classes sont représentées dans les packages correspondants.
+
+graph TD;
+
+pkg_authentification["pkg_authentification"];
+pkg_rh["pkg_rh"];
+pkg_competences["pkg_competences"];
+pkg_creation_projets["pkg_creation_projets"];
+pkg_realisation_projets["pkg_realisation_projets"];
+pkg_validations["pkg_validations"];
+pkg_formations["pkg_formations"];
+pkg_realisation_tache["pkg_realisation_tache"];
+pkg_creation_tache["pkg_creation_tache"];
+
+pkg_authentification --> pkg_rh;
+pkg_rh --> pkg_competences;
+pkg_competences --> pkg_creation_projets;
+pkg_creation_projets --> pkg_realisation_projets;
+pkg_realisation_projets --> pkg_validations;
+pkg_validations --> pkg_formations;
+pkg_realisation_projets --> pkg_realisation_tache;
+pkg_creation_projets --> pkg_creation_tache;
+
+pkg_autorisations["pkg_autorisations"];
+

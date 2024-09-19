@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\pkg_rh\VilleSeeder;
 use Database\Seeders\pkg_rh\SpecialiteSeeder;
-use Database\Seeders\pkg_rh\NiveauScholaireSeeder;
+use Database\Seeders\pkg_rh\NiveauScolaireSeeder;
 use Database\Seeders\pkg_rh\GroupeSeeder;
 use Database\Seeders\pkg_rh\PersonneSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,7 +23,7 @@ class pkg_rhSeeder extends Seeder {
     {
         return [
             GroupeSeeder::class,
-            NiveauScholaireSeeder::class,
+            NiveauScolaireSeeder::class,
             SpecialiteSeeder::class,
             VilleSeeder::class,
             PersonneSeeder::class,

@@ -1,7 +1,7 @@
 ---
 layout: default
 chapitre : true
-package: pkg_creation_projets
+package: pkg_formations
 order:  650
 ---
 

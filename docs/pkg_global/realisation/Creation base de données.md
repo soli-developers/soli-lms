@@ -23,7 +23,7 @@ php artisan make:model pkg_rh/Formateur -m
 php artisan make:model pkg_rh/Apprenant -m
 php artisan make:model pkg_rh/Groupe -m
 php artisan make:model pkg_rh/Ville -m
-php artisan make:model pkg_rh/NiveauScholaire -m
+php artisan make:model pkg_rh/NiveauScolaire -m
 php artisan make:model pkg_rh/Specialite -m
 ```
 
@@ -101,7 +101,7 @@ php artisan make:seeder pkg_rh/FormateurSeeder
 php artisan make:seeder pkg_rh/ApprenantSeeder
 php artisan make:seeder pkg_rh/GroupeSeeder
 php artisan make:seeder pkg_rh/VilleSeeder
-php artisan make:seeder pkg_rh/NiveauScholaireSeeder
+php artisan make:seeder pkg_rh/NiveauScolaireSeeder
 php artisan make:seeder pkg_rh/SpecialiteSeeder
 ```
 

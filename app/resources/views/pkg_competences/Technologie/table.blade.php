@@ -8,10 +8,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($technologieData as $technologie)
+            @foreach ($TechnologieData as $technologie)
                 <tr>
                     <td>{{ $technologie->nom }}</td>
-                    <td>{!! Str::limit($technologie->description, 100) !!}</td>
+                    <td>{!! Str::limit($technologie->description, 80) !!}</td>
 
                     <td class="text-center">
                         @can('show-TechnologieController')
@@ -45,7 +45,7 @@
 
 <div class="d-md-flex justify-content-between align-items-center p-2">
     <div class="d-flex align-items-center mb-2 ml-2 mt-2">
-        <!-- TODO css-2 : Importer et exporter ne doit pas s'afficher dans la version mobile  -->
+
         @can('import-TechnologieController')
             <form action="{{ route('technologies.import') }}" method="post" class="mt-2" enctype="multipart/form-data"
                 id="importForm">
@@ -54,7 +54,7 @@
                     <i class="fas fa-file-download"></i>
                     {{ __('app.import') }}
                 </label>
-                <input type="file" id="upload" name="file" style="display:none;" />
+                <input type="file" id="upload" name="file" style="display:none;" onchange="submitForm()" />
             </form>
         @endcan
         @can('export-TechnologieController')
@@ -67,13 +67,13 @@
     </div>
 
     <ul class="pagination  m-0 float-right">
-        {{ $technologieData->onEachSide(1)->links() }}
+        {{ $TechnologieData->onEachSide(1)->links() }}
     </ul>
 </div>
 
 
-{{-- <script>
+<script>
     function submitForm() {
         document.getElementById("importForm").submit();
     }
-</script> --}}
+</script>

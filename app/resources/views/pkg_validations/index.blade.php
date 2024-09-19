@@ -1,110 +1,113 @@
-{{-- resources/views/pkg_validations/validation.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
 <section class="content">
-    <form action="">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-default">
-                    <div class="card-header bg-info">
-                        <h3 class="card-title">Validation : {{ $realisation->Projet->titre }}</h3>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    <form action="{{ route('validations.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="realisation_projet_id" value="{{ $realisation->id }}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-default">
+                        <div class="card-header bg-info">
+                            <h3 class="card-title"> {{ __('pkg_validations/validation.plural') }} : {{ $realisation->Projet->titre }}</h3>
                         </div>
-                    <div class="card-body p-0">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="nom">Nom: </label> {{ $realisation->Personne->nom }}
-                            </div>
-                            <div class="form-group">
-                                <label for="prenom">Prénom: </label> {{ $realisation->Personne->prenom }}
-                            </div>
-                            <div class="form-group">
-                                <label for="livrables">Les livrables:</label>
-                                <ul class="list-group list-group-horizontal d-flex flex-row">
-                                    
-                                    <li class="list-group-item mr-2">
-                                        <strong>{{ $realisation->LivrableRealisation->nom }}</strong> <a href="{{ $realisation->LivrableRealisation->lien }}"><i class="fab fa-github"></i> Github</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            
+                        <div class="card-body p-0">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="nom">{{ __('app.name') }} </label> {{ $realisation->Personne->nom }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="prenom">{{ __('pkg_validations/validation.LastName') }}:</label> {{ $realisation->Personne->prenom }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="livrables">Les {{ __('pkg_creation_projets/Livrable.plural') }}:</label>
+                                    <ul class="list-group list-group-horizontal d-flex flex-row">
+                                        @foreach ($realisation->livrableRealisations as $livrableRealisation)
+                                            <li class="list-group-item mr-2">
+                                                <strong>{{ $livrableRealisation->nom }}</strong>
+                                                <a href="{{ $livrableRealisation->lien }}">
+                                                    @if (str_contains($livrableRealisation->lien, 'docs.google.com') ||
+                                                        str_contains($livrableRealisation->lien, 'sheets.google.com') ||
+                                                        str_contains($livrableRealisation->lien, 'slides.google.com'))
+                                                        <i class="fas fa-google-drive"></i> Google Drive
+                                                    @elseif (str_contains($livrableRealisation->lien, 'figma.com'))
+                                                        <i class="fab fa-figma"></i> Figma
+                                                    @else
+                                                        <i class="fas fa-link"></i> Link
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
                                 <table class="table table-bordered">
-                                    <caption style="caption-side: top; text-align: center; font-size: 1.5em; margin: 10px 0;">Formulaire pour la validation des Compétences</caption>
-                                    <thead>
+                                    <h1 style="caption-side: top; text-align: center; font-size: 1.5em; margin: 10px 0;">{{ __('pkg_validations/validation.Form') }}   {{ __('pkg_validations/validation.plural') }} {{ __('pkg_competences/competence.plural')}}
+                                    </h1>
                                         <tr>
-                                            <th>Compétence</th>
-                                            <th>Appréciation</th>
-                                            <th><i class="fas fa-check" style="color: green;"></i></th>
-                                            <th><i class="fas fa-times" style="color: red;"></i></th>
-                                            <th>Note</th>
+                                            <th>{{ __('pkg_competences/competence.plural') }}</th>
+                                            <th>{{ __('pkg_competences/appreciation.plural') }}</th>
+                                            <th>{{ __('pkg_validations/validation.Note') }}</th>
+                                            <th>{{ __('app.title') }}</th>
+                                            <th>{{ __('app.description') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($Competences as $Competence)
-                                        <tr>
-                                            <td>{{ $Competence->nom }}</td>
-                                            <td>
-                                                <select name="competence_{{ $Competence->id }}_level" class="form-control">
-                                                    @foreach ($appreciations as $appreciation)
-                                                        <option value="{{ $appreciation->value }}">{{ $appreciation->nom }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="competence_{{ $Competence->id }}_appreciation" value="Passable" style="accent-color: green;">
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="competence_{{ $Competence->id }}_appreciation" value="Insuffisant" style="accent-color: red;">
-                                            </td>
-                                            <td>
-                                                <input type="number" name="note" class="form-control" value="{{ $validations->note }}">
-                                            </td>
-                                        </tr>
+                                        @foreach ($competences as $competence)
+                                            <tr>
+                                                <td>{{ $competence->competence->nom }}</td>
+                                                <td>
+                                                    <select name="validations[{{ $competence->id }}][appreciation_id]" class="form-control">
+                                                        @foreach ($appreciations as $appreciation)
+                                                            <option value="{{ $appreciation->id }}" {{ $competence->appreciation_id == $appreciation->id ? 'selected' : '' }}>{{ $appreciation->nom }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error("validations.{$competence->id}.appreciation_id")
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                                <td>
+                                                    <input type="number" name="validations[{{ $competence->id }}][note]" class="form-control" value="{{ isset($notesByCompetence[$competence->id]) ? $notesByCompetence[$competence->id] : old('note') }}">
+                                                    @error("validations.{$competence->id}.note")
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="validations[{{ $competence->id }}][titre]" class="form-control" value="{{ isset($messagesByCompetence[$competence->id]) ? $messagesByCompetence[$competence->id][0]->titre : old('titre') }}" placeholder="Titre">
+                                                    @error("validations.{$competence->id}.titre")
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                                <td>
+                                                    <textarea name="validations[{{ $competence->id }}][description]" class="form-control" placeholder="Description">{{ isset($messagesByCompetence[$competence->id]) ? $messagesByCompetence[$competence->id][0]->description : old('description') }}</textarea>
+                                                    @error("validations.{$competence->id}.description")
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+
+
+
+
                                         @endforeach
                                     </tbody>
                                 </table>
-                                
-                                <h3 style="text-align: center; font-size: 1.5em; color: #6c757d; margin: 20px 0;">Formulaire de Retour sur les Compétences</h3>
-                                <div class="form-group">
-
-                                    <label for="selected_competence">Compétence</label>
-                                    <select id="selected_competence" class="form-control">
-                                        @foreach ($Competences as $Competence)
-                                        <option value="competence_mobile">{{ $Competence->nom }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="message">Titre:</label>
-                                <input type="text" id="message_title" class="form-control" value="{{ $messages->titre}}" placeholder="Entrez le titre du message">
-                                </div>
-                              
-                                <div class="form-group">
-                                    <label for="message">Message:</label>
-                                    <div class="form-control" id="message"  name="validation_message" rows="20">{{ $messages->description}}</textarea>
-                                </div>
-                            
-                                <script>
-                                    ClassicEditor
-                                        .create(document.querySelector('#message'))
-                                        .catch(error => {
-                                            console.error(error);
-                                        });
-                                </script>
-      
-                        </div>
-                    
                                 <div class="text-right m-5">
-                                        <a href="{{ route('validations.store') }}" class="btn btn-info">Valider</a>
-                            
+                                    <button type="submit" class="btn btn-info">{{ __('pkg_validations/validation.Validate') }}</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 @endsection
+

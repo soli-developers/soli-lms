@@ -1,17 +1,22 @@
 @startuml uses_cases_pkg_suivi
 
-left to right direction
-
-
-actor Admin as admin
+actor Formateur
+actor Apprenant
 
 package pkg_suivi {
 
-  Admin -->  (Cas d'utilisation) 
-  (extend 1 Cas d'utilisation)  <..  (Cas d'utilisation)  : <<extend>>
-  (extend 2 Cas d'utilisation)  <.  (Cas d'utilisation)  : <<extend>>
-}  
+  Formateur --> (suivi l'avencement des projets)
+  Formateur --> (suivi l'avencement des compétences)
 
-' note right of admin : "note 1"
+  Apprenant --> (suivi l'avencement des projets)
+  Apprenant --> (suivi l'avencement des compétences)
+  
+  (suivi l'avencement des projets) <.. (consulter la table d'avencement des projet)
+  (suivi l'avencement des projets) <.. (filtrer par projets)
+  (suivi l'avencement des compétences) <.. (consulter la table de validation des compétences)
+  (suivi l'avencement des compétences) <.. (filtrer les compétences par apprenant)
+  
+
+}  
 
 @enduml

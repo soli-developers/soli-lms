@@ -25,6 +25,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="col-sm-12">
+                                <label for="code">{{ __('Code') }}:</label>
+                                <p>{{ $fetchedData->code }}</p>
+                            </div>
+
+                            <div class="col-sm-12">
                                 <label for="nom">{{ __('app.name') }}:</label>
                                 <p>{{ $fetchedData->nom }}</p>
                             </div>

@@ -7,7 +7,7 @@ order: 1000
 
 ## Conclusion
 
-![Conclusion](./images/conclusion.jpg){:width="700px"}
+![Conclusion](./images/conclusion.png){:width="700px"}
 *Figure: Conclusion*
 
 <!-- note -->

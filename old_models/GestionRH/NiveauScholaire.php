@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\GestionRH\Apprenant;
 
-class NiveauScholaire extends Model
+class NiveauScolaire extends Model
 {
     use HasFactory;
-    protected $table = 'niveau_scholaire';
+    protected $table = 'niveau_scolaire';
 
     public function Apprenant()
     {

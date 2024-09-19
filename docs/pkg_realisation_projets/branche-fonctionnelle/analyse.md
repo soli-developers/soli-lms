@@ -40,5 +40,5 @@ Comment concevoir et mettre en œuvre un système de gestion de projets qui perm
 
 ## Diagamme de cas d'utilisation : 
 
-![Diagamme de cas d'utilisation : pkg_realisation_projets](/soli-lms/diagrammes/pkg_realisation_projets/uses_cases_pkg_technologies.svg)
+![Diagamme de cas d'utilisation : pkg_realisation_projets](/soli-lms/diagrammes/pkg_realisation_projets/uses_cases_pkg_realisation_projets.svg)
 *Diagamme de cas d'utilisation*

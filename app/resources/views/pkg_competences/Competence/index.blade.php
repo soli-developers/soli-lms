@@ -43,17 +43,26 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header col-md-12">
-                            <div class=" p-0">
-                                <div class="input-group input-group-sm float-sm-right col-md-3 p-0">
-                                    <input type="text" name="table_search" id="table_search"
-                                        class="form-control float-right" placeholder="Recherche">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
+                            <div class="card-header text-center">
+                                <form action="{{ route('competence.index') }}" method="GET" class="form-inline justify-content-center">
+                                    <div class="form-group mb-2 me-2" style=" margin-left: 50px;">
+                                        <label for="ModuleFilter" class="me-2">{{ __('pkg_competences/Module.plural') }}:</label>
+                                        <select name="module" class="form-control" id="ModuleFilter">
+                                            <option value="">{{ __('Modules') }}</option>
+                                            @foreach ($allModules as $Module)
+                                                <option value="{{ $Module->id }}" {{ request('module') == $Module->id ? 'selected' : '' }}>
+                                                    {{ $Module->nom }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-2 me-2">
+                                        <input type="text" name="table_search" id="table_search" class="form-control" placeholder="{{ __('app.rechercher') }}">
+                                        <button type="submit" class="btn btn-default" id="search-button">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
                         @include('pkg_competences.competence.table')

@@ -12,9 +12,3 @@ Dans l'ensemble, Soli-LMS représente une solution complète pour la gestion de 
 
 Le package de Validation au sein du projet Soli-LMS constitue une composante essentielle pour garantir l'équité, la précision et la cohérence dans l'évaluation des projets des apprenants. Grâce au diagramme de classe et aux maquettes d'interface utilisateur présentés, ce package offre une visualisation claire et structurée des processus de validation, facilitant ainsi la compréhension et la gestion des critères d'évaluation. Réalisé par un membre spécifique de l'équipe, le package de Validation contribue de manière significative à l'efficacité et à la qualité de l'évaluation des projets au sein de Soli-LMS. La combinaison de niveaux de validation personnalisables et d'un système de commentaires détaillés permet aux formateurs d'évaluer avec précision les compétences des apprenants et de fournir des retours constructifs pour favoriser leur progression. En résumé, le package de Validation joue un rôle crucial dans le succès et la performance globale de Soli-LMS .
 
-
-## Annex  : Conception
-
-![Conception](/soli-lms/diagrammes/pkg_global/classes_pkg_global.svg){:width="200%"}
-*Figure 13: Conception _diagramme de classe global*
-

@@ -2,12 +2,13 @@
 
 namespace Database\Seeders\pkg_competences;
 
-use App\Models\pkg_autorisations\Role;
+
 use App\Models\pkg_competences\NiveauCompetence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 
 
@@ -42,3 +43,27 @@ class NiveauCompetenceSeeder extends Seeder
     }
 
 }
+
+
+// ==========================================================
+        // =========== Add Seeder Permission Assign Role ============
+        // ==========================================================
+        $FormateurRole = User::FORMATEUR;
+        $Role = Role::where('name', $FormateurRole)->first();
+        $csvFile = fopen(base_path("database/data/pkg_competences/NiveauCompetencePermission.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvFile)) !== FALSE) {
+            if (!$firstline) {
+                Permission::create([
+                    "name" => $data['0'],
+                    "guard_name" => $data['1'],
+                ]);
+
+                if ($Role) {
+                    // If the role exists, update its permissions
+                    $Role->givePermissionTo($data['0']);
+                }
+            }
+            $firstline = false;
+        }
+        fclose($csvFile);

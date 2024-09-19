@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Specialite extends Model
 {
     use HasFactory;
+
+    public function formateur(){
+        return $this->hasMany(Formateur::class);
+    }
+
+    protected $fillable = ['nom'];
+
 }

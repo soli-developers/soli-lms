@@ -4,7 +4,7 @@ namespace App\Repositories\pkg_rh;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\pkg_rh\NiveauScolaireException;
-use App\Models\pkg_rh\NiveauScolaire;
+use App\Models\pkg_rh\NiveauScolaires;
 
 class NiveauScolaireRepository extends BaseRepository
 {
@@ -18,7 +18,7 @@ class NiveauScolaireRepository extends BaseRepository
     }
     public function __construct()
     {
-        parent::__construct(new NiveauScolaire());
+        parent::__construct(new NiveauScolaires());
     }
 
     public function create(array $data)
@@ -45,5 +45,12 @@ class NiveauScolaireRepository extends BaseRepository
         } else {
             return parent::update($id, $data);
         }
+    }
+
+    public function searchData($searchableData, $perPage = 4)
+    {
+        return $this->model->where(function($query) use ($searchableData) {
+            $query->where('nom', 'like', '%' . $searchableData . '%');
+        })->paginate($perPage);
     }
 }

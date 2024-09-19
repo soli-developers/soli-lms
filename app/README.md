@@ -1,5 +1,21 @@
 # Installation Laravel
 
+## Ajouter un Spin de chargement
+
+- Ajoutez ceci *id="tableForm"* à votre table dans la page d'index pour afficher la rotation de chargement lors de la recherche
+
+```html
+    <div class="card-header col-md-12" id="tableForm" id="tableForm"> 
+        <div class="input-group input-group-sm float-sm-right col-md-3 p-0">
+            <input type="text" name="table_search" id="table_search" class="form-control float-right" placeholder="Recherche">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+```
 
 ## Installation de PHP
 
@@ -68,4 +84,31 @@ npm run build
 ```
 
 <!-- TODO :Loin and password   -->
-## Loin and password 
+## Login and password 
+
+- **Apprenants:**
+    - **Emails:**
+        - hamza@solicode.co
+        - Imrane@solicode.co
+        - reda@solicode.co
+        - Amine@solicode.co
+        - Adnan@solicode.co
+        - Safaa@solicode.co
+        - Yasmine@solicode.co
+        - Soufian@solicode.co
+        - Hussein@solicode.co
+        - jalil@solicode.co
+        - amina@solicode.co
+        - Hamid@solicode.co
+    - **Password**
+        - apprenant
+- **Formateures:**
+    - **Emails:**
+        - Fouad@solicode.co
+    - **Password**
+        - formateur
+- **Responsable:**
+    - **Emails:**
+        - hammouda@solicode.co
+    - **Password**
+        - responsable

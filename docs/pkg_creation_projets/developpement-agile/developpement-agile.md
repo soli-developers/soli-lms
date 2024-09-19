@@ -5,7 +5,7 @@ package : pkg_creation_projets
 order: 330
 ---
 
-## Processus de développement
+## Processus de développement et méthodes
 {:class="sectionHeader"}
 
 <!-- note -->
@@ -72,27 +72,29 @@ En combinant 2TUP et Design Thinking,  nous nous assurons de développer une pla
 
 <!-- new slide -->
 
-## La Construction Logicielle : Plans et Outils
-{:class="sectionHeader"}
-
-<!-- note -->
-
-Le développement logiciel est comparable à la construction d'un chef-d'œuvre numérique. Il s'agit d'une série d'étapes méticuleusement orchestrées, une feuille de route pour donner vie à un système ou le remodeler. Ce chapitre vous emmène dans un voyage à travers deux approches puissantes : 2TUP et Design Thinking, chacune ayant son propre style et expertise unique.
-
-
-<!-- new slide -->
+layout: default
+chapitre: true
+package: pkg_creation_projets
+order: 330
+---
 
 ## Le Développement Agile : Une Approche Adaptative
-
 {:class="sectionHeader"}
+![Méthode agile](/soli-lms/pkg_creation_projets/developpement-agile/images/Agile.jpg){:width="400px"}*figure: Méthode agile*
 
 <!-- note -->
 
 Le développement Agile est comme une danse de flexibilité et d'itération.  Il s'agit de livrer des versions fonctionnelles de logiciels à intervalles réguliers, en s'adaptant en permanence aux besoins changeants des utilisateurs.
 
-Ce chapitre explore le cœur de l'Agile, ses avantages et ses limites. Nous plongerons ensuite dans Scrum, une méthodologie Agile populaire, en examinant ses rôles clés, ses événements, ses artefacts et les meilleures pratiques pour garantir le succès des projets Scrum.
 
+<!-- new slide -->
 
-![Méthode agile](/soli-lms/pkg_creation_projets/developpement-agile/images/Scrum.png){:width="700px"}*figure: Méthode agile*
+## Scrum : Une Méthodologie Agile Populaire
+
+![Scrum](/soli-lms/pkg_creation_projets/developpement-agile/images/Scrum.png){:width="700px"}*figure: Méthodologie Scrum*
+
+<!-- note -->
+
+Scrum est une approche agile qui se base sur des rôles spécifiques (Product Owner, Scrum Master, Équipe de développement), des événements réguliers (planification, revue, rétrospective) et des artefacts (backlog produit, sprint backlog, incrément) pour gérer le développement logiciel.
 
 <!-- new slide -->

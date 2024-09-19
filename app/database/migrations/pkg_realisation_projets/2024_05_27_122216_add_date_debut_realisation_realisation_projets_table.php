@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('realisation_projets', function (Blueprint $table) {
-            $table->date('date_debut_realisation');
-            $table->date('date_fin_realisation');
+            $table->date('date_debut_realisation')->nullable();
+            $table->date('date_fin_realisation')->nullable();
             $table->unsignedBigInteger('projet_id');
             $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
-            $table->unsignedBigInteger('etat_realisation_projet_id');
+            $table->unsignedBigInteger('etat_realisation_projet_id')->nullable();
             $table->foreign('etat_realisation_projet_id')->references('id')->on('etat_realisation_projets')->onDelete('cascade');            
             $table->unsignedBigInteger('personne_id')->nullable();
             $table->foreign('personne_id')->references('id')->on('personnes')->onDelete('cascade');

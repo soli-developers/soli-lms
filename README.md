@@ -17,7 +17,7 @@ composer install
 ```bash
 cp .env.example .env
 ```
-
+ 
 5. Configuration de la Base de Données pour un Projet Laravel
 ```bash
 DB_CONNECTION=mysql

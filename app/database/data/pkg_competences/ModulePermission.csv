@@ -1,0 +1,10 @@
+name,guard_name
+
+show-ModuleController,web
+create-ModuleController,web
+store-ModuleController,web
+edit-ModuleController,web
+update-ModuleController,web
+destroy-ModuleController,web
+export-ModuleController,web
+import-ModuleController,web

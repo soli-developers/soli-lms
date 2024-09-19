@@ -21,14 +21,21 @@ Dans le processus de conception d’une interface utilisateur, il est important 
 ## Diagramme de classes 
 
 ![Conception - pkg_realisation_projets ](/soli-lms/diagrammes/pkg_realisation_projets/classes_pkg_realisation_projets.svg){:width="100%"}
-**Conception - pkg_realisation_projets**
+*Conception - pkg_realisation_projets*
 
-## Diagramme de packages
 
-![Diagramme de packages](./images/Diagramme-des-paquetages.png){:width="900px"}
-*Figure: Diagramme de packages* 
 
 <!-- new slide -->
 
 ## Maquette
+### Formateur
+ ![Maquette  Formateur](/soli-lms/pkg_realisation_projets/Conception/formature.png){:width="100%"}
+ *Maquette  Formateur* 
+
+
+
+### Apprennent 
+ ![Maquette  Apprennent](/soli-lms/pkg_realisation_projets/Conception/apprenent.png){:width="100%"}
+ *Maquette  Formateur* 
+
 

@@ -34,18 +34,7 @@ class LivrableRepository extends BaseRepository
     {
         parent::__construct(new Livrable());
     }
-    public function create(array $data)
-    {
-        $titre = $data['titre'];
-
-        $existingProject =  $this->model->where('titre', $titre)->exists();
-
-        if ($existingProject) {
-            throw LivrableAlreadyExistException::createLivrable();
-        } else {
-            return parent::create($data);
-        }
-    }
+    
         /**
      * Recherche les projets correspondants aux critères spécifiés.
      *

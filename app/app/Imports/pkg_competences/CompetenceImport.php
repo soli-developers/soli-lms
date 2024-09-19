@@ -14,6 +14,7 @@ class CompetenceImport implements ToModel, WithHeadingRow
     {
 
         return new Competence([
+            'code' => $row["code"],
             'nom' => $row["nom"],
             'description' => $row["description"],
 

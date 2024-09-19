@@ -1,4 +1,7 @@
+import "https://code.jquery.com/jquery-3.6.0.min.js";
+
 $(document).ready(function () {
+
     // Fonction pour mettre à jour un paramètre dans l'URL
     function updateURLParameter(param, paramVal) {
         var url = window.location.href;
@@ -22,71 +25,95 @@ $(document).ready(function () {
 
     // Fonction pour récupérer les données avec AJAX
     function fetchData(page, searchValue) {
-        $.ajax({
-            url: "/projets/?page=" + page + "&searchValue=" + searchValue,
-            success: function (data) {
-                var newData = $(data);
+        var neededUrl = window.location.pathname;
+        console.log(neededUrl);
 
-                $("tbody").html(newData.find("tbody").html());
-                $("#card-footer").html(newData.find("#card-footer").html());
-                var paginationHtml = newData.find(".pagination").html();
-                if (paginationHtml) {
-                    $(".pagination").html(paginationHtml);
-                } else {
-                    $(".pagination").html("");
-                }
-            },
-        });
-        if (page !== null && searchValue !== null) {
-            updateURLParameter("page", page);
-            updateURLParameter("searchValue", searchValue);
-        } else {
-            window.history.replaceState(
-                {},
-                document.title,
-                window.location.pathname
-            );
+        if (showLoading()) {
+            setTimeout(searchRequest, 300);
+        }else{
+            searchRequest();
         }
+
+        function searchRequest(){
+            $.ajax({
+                url: neededUrl + "/?page=" + page + "&searchValue=" + searchValue,
+                success: function (data) {
+                    var newData = $(data);
+
+                    $("tbody").html(newData.find("tbody").html());
+                    $("#card-footer").html(newData.find("#card-footer").html());
+                    var paginationHtml = newData.find(".pagination").html();
+                    if (paginationHtml) {
+                        $(".pagination").html(paginationHtml);
+                    } else {
+                        $(".pagination").html("");
+                    }
+                    hideLoading();
+                },
+            });
+
+            if (page !== null && searchValue !== null) {
+                updateURLParameter("page", page);
+                updateURLParameter("searchValue", searchValue);
+            } else {
+                window.history.replaceState(
+                    {},
+                    document.title,
+                    window.location.pathname
+                );
+            }
+        }
+
+
+ origin/develop-pkg_rh
     }
 
-    // Function to get URL parameter value by name
     function getUrlParameter(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-        var results = regex.exec(location.search);
-        return results === null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
+        return new URLSearchParams(window.location.search).get(name) || "";
     }
 
     var searchValueFromUrl = getUrlParameter("searchValue");
+    var competenceIdFromUrl = getUrlParameter("competenceId");
+    var pageFromUrl = getUrlParameter("page") || 1;
+
     if (searchValueFromUrl) {
         $("#table_search").val(searchValueFromUrl);
-        fetchData($("#page").val(), searchValueFromUrl);
     }
+    if (competenceIdFromUrl) {
+        $("#competenceFilter").val(competenceIdFromUrl);
+    }
+    fetchData(pageFromUrl, searchValueFromUrl, competenceIdFromUrl);
 
-    // Gestion de l'événement de clic sur la pagination
-    $("body").on("click", ".pagination a", function (param) {
-        param.preventDefault();
-        var page = $(this).attr("href").split("page=")[1];
+    $(document).on("change", "#competenceFilter", function () {
+        var page = 1; // Reset to the first page on filter change
+        var competenceId = $(this).val();
         var searchValue = $("#table_search").val();
-        fetchData(page, searchValue);
+        fetchData(page, searchValue, competenceId);
     });
 
-    // Gestion de l'événement de saisie dans la barre de recherche
+    $("body").on("click", ".pagination button", function (event) {
+        event.preventDefault();
+        var page = $(this).attr("page-number");
+        var searchValue = $("#table_search").val();
+        var competenceId = $("#competenceFilter").val();
+        fetchData(page, searchValue, competenceId);
+    });
+
+
     $("body").on("keyup", "#table_search", function () {
-        var page = $("#page").val();
         var searchValue = $(this).val();
-        fetchData(page, searchValue);
+        var competenceId = $("#competenceFilter").val();
+        if (searchValue === "") {
+            updateURLParameters({ page: undefined, searchValue: undefined });
+            fetchData(1, searchValue, competenceId);
+        } else {
+            fetchData(1, searchValue, competenceId);
+        }
     });
 
-    // Soumission du formulaire
-    function submitForm() {
-        document.getElementById("importForm").submit();
-    }
-
-    // Activation des dropdowns Bootstrap
-    $(document).ready(function () {
-        $(".dropdown-toggle").dropdown();
+    $(document).on("change", "#upload", function () {
+        $("#importForm").submit();
     });
+
+    $(".dropdown-toggle").dropdown();
 });

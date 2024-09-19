@@ -43,8 +43,10 @@ class TechnologieRepository extends BaseRepository
     public function create(array $data)
     {
         $nom = $data['nom'];
+        $description = $data['description'];
 
         $existingProject = $this->model->where('nom', $nom)->exists();
+        $existingProject = $this->model->where('description', $description)->exists();
 
         if ($existingProject) {
             throw TechnologieAlreadyExistException::createTechnologie();

@@ -1,0 +1,10 @@
+name
+index-ProjetController,
+show-ProjetController,
+create-ProjetController,
+store-ProjetController,
+edit-ProjetController,
+update-ProjetController,
+destroy-ProjetController,
+export-ProjetController,
+import-ProjetController,

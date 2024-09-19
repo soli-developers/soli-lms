@@ -1,6 +1,5 @@
-nom,description,lien,formateur_id
-Laravel,Formation complète sur le framework Laravel.,https://example.com/laravel,1
-HTML5,Introduction et avancées en HTML5.,https://example.com/html5,2
-CSS3,Maîtrise du style avec CSS3.,https://example.com/css3,3
-Figma,Conception d'interfaces avec Figma.,https://example.com/figma,2
-
+nom,description,lien,lien1
+Laravel,Formation complète sur le framework Laravel.,https://example.com/laravel,https://example.com/laravel1
+HTML5,Introduction et avancées en HTML5.,https://example.com/html5,https://example.com/html2,,
+CSS3,Maîtrise du style avec CSS3.,https://example.com/css3,https://example.com/css6,
+Figma,Conception d'interfaces avec Figma.,https://example.com/figma,https://example.com/figma1,

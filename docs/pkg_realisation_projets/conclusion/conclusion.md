@@ -7,8 +7,6 @@ order: 1000
 
 # Conclusion
 
-![Conclusion](./images/conclusion.jpg){:width="700px"}
-*Figure: Conclusion*
 
 <!-- note -->
  
@@ -21,14 +19,5 @@ Le résultat final est une application web mobile fonctionnelle qui répond parf
 En résumé, ce projet de formation a été extrêmement enrichissant en tant que développeur d'applications web et mobile. Il m'a permis d'acquérir de nouvelles compétences et de consolider mes connaissances existantes. Je me sens maintenant mieux préparé pour faire face à de nouveaux défis dans ma future carrière professionnelle. Je suis fier de ce que j'ai accompli et de ma capacité à fournir des solutions efficaces dans le domaine du développement d'applications web et mobile
 
 
-# Annex 1 : Planning
-
- <!-- picture -->
-
-
-
-# Annex 2 : Coneption
-
- <!-- maquette extra -->
 
 

@@ -1,13 +1,41 @@
 classDiagram
 
-namespace pkg_suivi {
+namespace pkg_validations {
+class Validation 
+class Message 
+}
+RealisationProjet "1" --> "*" Validation
+Validation "*" --> "1" TransfertCompetence
+Validation "*" --> "1" Appreciation
+Validation "1" --> "1 " Message
 
-class Entity {
+namespace pkg_competences {
+  class Competence 
+  class Appreciation
+}
+
+namespace pkg_creation_projets {
+  class Projet 
+  %% par défaut il faut ajouter deux livrable : Code, Présentation
+  class TransfertCompetence
+}
+
+Projet "1" --> "*" TransfertCompetence
+TransfertCompetence "*" -- "1" Competence 
+TransfertCompetence "*" -- "1" Appreciation
+
+namespace pkg_realisation_projets {
+  class RealisationProjet
+}
+Projet "1" -- "*" RealisationProjet
+
+class Validation {
   id : int
-  nom : String
-  description : String
+  note : float
 }
 
+class Message {
+  id: int
+  titre: string
+  description: text
 }
-
-Entity "*" --> "1" Entity

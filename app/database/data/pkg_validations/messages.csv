@@ -1,11 +1,8 @@
 titre,description,validation_id
-"Welcome","Welcome to our service",1
-"Reminder","Don't forget to update your profile",2
-"Greetings","Have a great day!",3
-"Update Required","Please update your information",4
-"Thank You","Thank you for using our service",5
-"Important Notice","Check your inbox for updates",6
-"Feedback Request","We value your feedback",7
-"Account Verification","Verify your account to continue",8
-"New Feature Alert","Explore our latest features",9
-"Stay Connected","Follow us on social media",10
+"Greetings","Have a great day!",1
+"Thank You","Thank you for using our service",2
+"Important Notice","Check your inbox for updates",3
+"Feedback Request","We value your feedback",4
+"Account Verification","Verify your account to continue",5
+"New Feature Alert","Explore our latest features",6
+"Stay Connected","Follow us on social media",7

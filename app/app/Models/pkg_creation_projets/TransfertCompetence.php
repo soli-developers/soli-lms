@@ -33,7 +33,7 @@ class TransfertCompetence extends Model
 
     public function technologies()
     {
-        return $this->belongsToMany(Technologie::class);
+        return $this->belongsToMany(Technologie::class, 'technologie_competences', 'transfert_competence_id', 'technologie_id');
     }
 
     public function validations()

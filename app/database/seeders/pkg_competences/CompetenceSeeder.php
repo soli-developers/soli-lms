@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\pkg_competences\Competence;
 use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 
 
 class CompetenceSeeder extends Seeder
@@ -41,3 +44,39 @@ class CompetenceSeeder extends Seeder
         fclose($csvFile);
     }
 }
+
+
+// ==========================================================
+        // =========== Add Seeder Permission Assign Role ============
+        // ==========================================================
+        $FormateurRole = Role::where('name', User::FORMATEUR)->first();
+        $responsableRole = Role::where('name', User::RESPONSABLE)->first();
+
+
+        $csvFile = fopen(base_path("database/data/pkg_competences/CompetencePermissions.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvFile)) !== FALSE) {
+            if (!$firstline) {
+                Permission::create([
+                    "name" => $data['0'],
+                    "guard_name" => $data['1'],
+                ]);
+
+                if ($FormateurRole) {
+                    // If the role exists, update its permissions
+                    $FormateurRole->givePermissionTo($data['0']);
+                } 
+                
+
+                if ($responsableRole) {
+                    // If the role exists, update its permissions
+                    if (in_array($data['0'], ['index-CompetenceController', 'show-CompetenceController', 'destroy-CompetenceController','create-CompetenceController','store-CompetenceController','edit-CompetenceController','update-CompetenceController','export-CompetenceController','import-CompetenceController'] )) {
+                        $responsableRole->givePermissionTo($data['0']);
+                    }
+                } 
+
+            }
+            $firstline = false;
+        }
+        fclose($csvFile);
+

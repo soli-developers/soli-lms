@@ -9,7 +9,7 @@ use App\Models\pkg_rh\Groupe;
 class GroupeRepository extends BaseRepository
 {
     protected $fieldsSearchable = [
-        'name'
+        'nom'
     ];
 
     public function getFieldsSearchable(): array
@@ -46,4 +46,14 @@ class GroupeRepository extends BaseRepository
             return parent::update($id, $data);
         }
     }
+
+    public function searchData($searchableData, $perPage = 4)
+    {
+        return $this->model->where(function($query) use ($searchableData) {
+            $query->where('nom', 'like', '%' . $searchableData . '%')
+                  ->orWhere('description', 'like', '%' . $searchableData . '%');
+        })->paginate($perPage);
+    }
+
+
 }

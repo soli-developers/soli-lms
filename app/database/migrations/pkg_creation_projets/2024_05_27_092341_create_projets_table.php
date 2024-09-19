@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('critereDeTravail');
             $table->date('dateDebut');
             $table->date('dateFin');
+            $table->unsignedBigInteger('formateur_id');
+            $table->foreign('formateur_id')->references('id')->on('personnes')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ order: 435
 
 ## Analyse technique
 
-![Analyse technique](./images/analyse-technique.png){:width="900px"}
+![Analyse technique](/soli-lms/pkg_realisation_projets/branche-technique/Analyse technique.png){:width="300px"}
 *Figure: Analyse technique*
 
 <!-- note -->
@@ -39,14 +39,18 @@ Interfaces : Les développeurs ne respectent pas les méthodes.
 
 ## Architecture mvc :
 
-![Architecture mvc](./images/Architecture-mvc.png){:width="100%" height="500px"}
+![Architecture mvc](/soli-lms/pkg_realisation_projets/branche-technique/ripository.png)
 _Figure : Cart d'empathie : Architecture mvc_
 
 <!-- note -->
 
-L'architecture MVC (Modèle-Vue-Contrôleur) est un modèle de conception qui permet de séparer les différentes parties d'une application pour faciliter la maintenance et l'évolutivité du code. Le Modèle gère les données, la Vue présente les données à l'utilisateur et le Contrôleur gère les interactions de l'utilisateur avec l'application. L'architecture MVC est 
-souvent utilisée dans le développement de sites Web, d'applications mobiles et d'autres projets logiciels pour améliorer l'organisation du code, la réutilisabilité et la maintenance.
+Notre application adopte une architecture basée sur le Modèle-Vue-Contrôleur (MVC), enrichie d'une couche supplémentaire correspondant au modèle Repository Pattern.
 
+Le Modèle-Vue-Contrôleur (MVC) est une architecture logicielle qui divise l'application en trois composants principaux : le modèle, la vue et le contrôleur. Le modèle représente les données et la logique métier de l'application, la vue affiche ces données aux utilisateurs, tandis que le contrôleur gère les entrées utilisateur et coordonne les interactions entre le modèle et la vue.
+
+L'ajout du modèle Repository Pattern introduit une couche d'abstraction supplémentaire, séparant la logique de stockage des données de la logique métier de l'application. Cette couche se charge de l'accès aux données, de leur persistance et de leur récupération, ce qui améliore la maintenabilité et l'évolutivité de l'application.
+
+Grâce à cette architecture, nous avons pu séparer efficacement les différentes responsabilités de notre application, facilitant ainsi sa maintenance et son évolution future.
 <!-- new slide -->
 
 ## Prototype 

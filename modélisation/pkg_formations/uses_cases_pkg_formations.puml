@@ -2,16 +2,16 @@
 
 left to right direction
 
-
-actor Admin as admin
+actor Formateur
+actor Apprennant 
 
 package pkg_formations {
 
-  Admin -->  (Cas d'utilisation) 
-  (extend 1 Cas d'utilisation)  <..  (Cas d'utilisation)  : <<extend>>
-  (extend 2 Cas d'utilisation)  <.  (Cas d'utilisation)  : <<extend>>
-}  
-
-' note right of admin : "note 1"
+  Formateur -- (Gestions des formations)
+  Apprennant -- (Consultations des formations)
+  
+  (Gestions des formations) ..> (Authentification) : include
+  (Consultations des formations) ..> (Authentification) : include
+}
 
 @enduml

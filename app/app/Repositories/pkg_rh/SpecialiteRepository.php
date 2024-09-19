@@ -46,4 +46,12 @@ class SpecialiteRepository extends BaseRepository
             return parent::update($id, $data);
         }
     }
+
+    public function searchData($searchableData, $perPage = 4)
+    {
+        return $this->model->where(function($query) use ($searchableData) {
+            $query->where('nom', 'like', '%' . $searchableData . '%');
+        })->paginate($perPage);
+    }
+
 }

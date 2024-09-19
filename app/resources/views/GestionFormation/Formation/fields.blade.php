@@ -22,13 +22,20 @@
 
         <div class="form-group">
             <label for="link">{{ __('app.link') }}</label>
-            <input name="link" type="url" class="form-control" id="link" placeholder="Entrez le lien" value="{{ $dataToEdit ? $dataToEdit->link : old('link') }}">
-            @error('link')
+            <input name="lien" type="url" class="form-control" id="link" placeholder="Entrez le lien" value="{{ $dataToEdit ? $dataToEdit->lien : old('lien') }}">
+            @error('lien')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
     </div>
-
+    <div class="form-group">
+        <label for="lien1">{{ __('app.link1') }}</label>
+        <input name="lien1" type="url" class="form-control" id="link1" placeholder="Entrez le lien" value="{{ $dataToEdit ? $dataToEdit->lien1 : old('lien1') }}">
+        @error('lien1')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
     <div class="card-footer">
         <a href="{{ route('formations.index') }}" class="btn btn-default">{{ __('app.cancel') }}</a>
         <button type="submit" class="btn btn-info ml-2">{{ $dataToEdit ? __('app.edit') : __('app.add') }}</button>

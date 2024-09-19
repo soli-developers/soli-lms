@@ -3,88 +3,96 @@
 namespace App\Http\Controllers\pkg_competences;
 
 use App\Exceptions\pkg_competences\categorietechnologieException;
-use App\Exports\pkg_competences\CategorieTechnologieExport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\pkg_competences\CategorieTechnologie;
 use App\Imports\pkg_competences\CategorieTechnologieImport;
-use App\Models\pkg_competences\CategorieTechnologie as Pkg_competencesCategorieTechnologie;
-use App\Repositories\pkg_competences\categorietechnologieRepository;
+use App\Models\pkg_competences\CategorieTechnologie;
 use Illuminate\Http\Request;
+use App\Http\Requests\pkg_competences\CategorieTechnologieRequest;
+use App\Repositories\pkg_competences\CategorieTechnologieRepository;
+use App\Http\Controllers\AppBaseController;
+use Carbon\Carbon;
+use App\Exports\pkg_competences\CategorieTechnologieExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class CategorieTechnologieController extends Controller
+class CategorieTechnologieController extends AppBaseController
 {
+    protected $CategorieTechnologieRepository;
 
-    protected $CategorieTechnologie;
-    public function __construct(categorietechnologieRepository $categorieTechnologie)
+    public function __construct(CategorieTechnologieRepository $CategorieTechnologieRepository)
     {
-
-        $this->CategorieTechnologie = $categorieTechnologie;
+        $this->CategorieTechnologieRepository = $CategorieTechnologieRepository;
     }
 
     public function index(Request $request)
-    { 
+    {
         if ($request->ajax()) {
             $searchValue = $request->get('searchValue');
             if ($searchValue !== '') {
                 $searchQuery = str_replace(' ', '%', $searchValue);
-                $categorieTechnologiesData = $this->CategorieTechnologie->searchData($searchQuery);
-                return view('pkg_competences.CategorieTechnologie.index', compact('categorieTechnologiesData'))->render();
+                $CategorieTechnologieData = $this->CategorieTechnologieRepository->searchData($searchQuery);
+                return view('pkg_competences.CategorieTechnologie.index', compact('CategorieTechnologieData'))->render();
             }
         }
-        $categorieTechnologiesData = $this->CategorieTechnologie->paginate();
-        return view('pkg_competences.CategorieTechnologie.index', compact('categorieTechnologiesData'));
+        $CategorieTechnologieData = $this->CategorieTechnologieRepository->paginate();
+        return view('pkg_competences.CategorieTechnologie.index', compact('CategorieTechnologieData'));
     }
 
     public function create()
     {
-        return view('pkg_competences.CategorieTechnologie.create');
+        
+        return view('pkg_competences.CategorieTechnologie.create', compact('dataToEdit'));
     }
 
-    public function store(CategorieTechnologie $request)
+    public function store(CategorieTechnologieRequest $request)
     {
         try {
-            $data = $request->validated();
-            $this->CategorieTechnologie->create($data);
-            return redirect()->route('CategorieTechnologie.index')->with('success', 'Catégorie technologie  ' . __('app.addSucées'));
+            $validatedData = $request->validated();
+            $this->CategorieTechnologieRepository->create($validatedData);
+            return redirect()->route('CategorieTechnologie.index')->with('success', __('messages.create_success'));
         } catch (categorietechnologieException $e) {
-            return back()->with('error', $e->getMessage());
+            return back()->withInput()->withErrors(['competence_exists' => 'Categorie Technologie est déjà existant']);
+
         }
-    }
-    public function show($id)
-    {
-        $fetchedData = $this->CategorieTechnologie->find($id);
-        return view('pkg_competences.CategorieTechnologie.show', compact('fetchedData'));
-    }
-    public function edit($id)
-    {
-        $dataToEdit = $this->CategorieTechnologie->find($id);
-        return view('pkg_competences.CategorieTechnologie.edit', compact('dataToEdit'));
+
+
+
     }
 
-    public function update(CategorieTechnologie $request, $id)
-    {
-        try {
-            $data = $request->validated();
-            $this->CategorieTechnologie->update($id, $data);
-            return redirect()->route('CategorieTechnologie.index')->with('success', 'Categorie Technologie ' . __('app.updateSucées'));
-        } catch (categorietechnologieException $e) {
-            return back()->with('error', $e->getMessage());
-        }
+    public function show(string $id)
+{
+    $fetchedData = $this->CategorieTechnologieRepository->find((int)$id);
+
+    if (!$fetchedData) {
+        return redirect()->route('CategorieTechnologie.index')->withErrors(__('messages.not_found'));
     }
 
-    public function destroy($id){
-        $this->CategorieTechnologie->destroy($id);
-        return redirect()->route('CategorieTechnologie.index')->with('success', 'Categorie Technologie ' . __('app.deleteSucées'));
+    return view('pkg_competences.CategorieTechnologie.show', compact('fetchedData'));
+}
+
+    public function edit(string $id)
+    {
+    $dataToEdit = $this->CategorieTechnologieRepository->find((int)$id);
+    return view('pkg_competences.CategorieTechnologie.edit', compact('dataToEdit'));
+    }
+
+    public function update(CategorieTechnologieRequest $request, string $id)
+    {
+    $validatedData = $request->validated();
+    $this->CategorieTechnologieRepository->update((int)$id, $validatedData);
+    return redirect()->route('CategorieTechnologie.index')->with('success', __('messages.update_success'));
+    }
+
+    public function destroy(string $id)
+    {
+    $this->CategorieTechnologieRepository->destroy((int)$id);
+    return redirect()->route('CategorieTechnologie.index')->with('success', __('messages.delete_success'));
     }
 
     public function export()
     {
-        $CategorieTechnologies = $this->CategorieTechnologie->all();
-
-        return Excel::download(new CategorieTechnologieExport($CategorieTechnologies), 'CategorieTechnologie.xlsx');
+        $CategorieTechnologie = CategorieTechnologie::all();
+        return Excel::download(new CategorieTechnologieExport($CategorieTechnologie), 'CategorieTechnologie_export.xlsx');
     }
-
 
     public function import(Request $request)
     {
@@ -97,6 +105,6 @@ class CategorieTechnologieController extends Controller
         } catch (\InvalidArgumentException $e) {
             return redirect()->route('CategorieTechnologie.index')->withError('Le symbole de séparation est introuvable. Pas assez de données disponibles pour satisfaire au format.');
         }
-        return redirect()->route('CategorieTechnologie.index')->with('success', 'Categorie Technologie ' . __('app.addSucées'));
+        return redirect()->route('CategorieTechnologie.index')->with('success', __('pkg_competences/CategorieTechnologie.singular') . ' ' . __('app.addSucées'));
     }
 }

@@ -25,7 +25,8 @@ class FormationRequest extends FormRequest
             'nom' => 'required|string|max:255',
             'description' => 'nullable|string',
             'lien' => 'nullable|url',
-            'formateur_id' => 'required|exists:formateurs,id',
+            'lien1' => 'nullable|url'
+
         ];
     }
 }

@@ -1,11 +1,11 @@
-titre,description,travailAFaire,critereDeTravail,dateDebut,dateFin
-"Développement de site web","Projet de développement du nouveau site web de l'entreprise","Développer un site web pour l'entreprise","Suivre les meilleures pratiques du développement web","2024-01-01","2024-06-01"
-"Application mobile","Développer une application mobile pour l'engagement client","Créer une application mobile pour l'entreprise","Doit être conviviale et efficace","2024-02-01","2024-08-01"
-"Système de gestion de contenu","Création d'un système de gestion de contenu pour les employés","Développer un CMS interne","Doit être facile à utiliser et sécurisé","2024-03-01","2024-09-01"
-"Analyse de données","Analyse des données des ventes pour les rapports trimestriels","Mettre en place un système d'analyse de données","Doit être précis et rapide","2024-04-01","2024-10-01"
-"Plateforme e-commerce","Création d'un site de commerce électronique","Développer une plateforme de vente en ligne","Doit être robuste et évolutive","2024-05-01","2024-11-01"
-"Automatisation des tâches","Développement de scripts pour automatiser les tâches administratives","Automatiser les processus répétitifs","Doit réduire les erreurs et augmenter l'efficacité","2024-06-01","2024-12-01"
-"Système de gestion des ressources humaines","Création d'un système pour gérer les employés et les paies","Développer un HRMS","Doit être complet et intuitif","2024-07-01","2025-01-01"
-"Application de santé","Développement d'une application pour suivre les paramètres de santé","Créer une application de suivi de la santé","Doit être précise et sécurisée","2024-08-01","2025-02-01"
-"Migration vers le cloud","Migration de l'infrastructure IT vers une solution cloud","Migrer les systèmes existants vers le cloud","Doit être sans interruption de service","2024-09-01","2025-03-01"
-"Système de gestion de la chaîne d'approvisionnement","Création d'un système pour gérer la chaîne d'approvisionnement","Développer un SCM","Doit être efficace et transparent","2024-10-01","2025-04-01"
+titre,description,travailAFaire,critereDeTravail,dateDebut,dateFin,formateur_id
+"Développement de site web","Projet de développement du nouveau site web de l'entreprise","Développer un site web pour l'entreprise","Suivre les meilleures pratiques du développement web","2024-01-01","2024-06-01",14
+"Application mobile","Développer une application mobile pour l'engagement client","Créer une application mobile pour l'entreprise","Doit être conviviale et efficace","2024-02-01","2024-08-01",15
+"Système de gestion de contenu","Création d'un système de gestion de contenu pour les employés","Développer un CMS interne","Doit être facile à utiliser et sécurisé","2024-03-01","2024-09-01",16
+"Analyse de données","Analyse des données des ventes pour les rapports trimestriels","Mettre en place un système d'analyse de données","Doit être précis et rapide","2024-04-01","2024-10-01",14
+"Plateforme e-commerce","Création d'un site de commerce électronique","Développer une plateforme de vente en ligne","Doit être robuste et évolutive","2024-05-01","2024-11-01",15
+"Automatisation des tâches","Développement de scripts pour automatiser les tâches administratives","Automatiser les processus répétitifs","Doit réduire les erreurs et augmenter l'efficacité","2024-06-01","2024-12-01",16
+"Système de gestion des ressources humaines","Création d'un système pour gérer les employés et les paies","Développer un HRMS","Doit être complet et intuitif","2024-07-01","2025-01-01",14
+"Application de santé","Développement d'une application pour suivre les paramètres de santé","Créer une application de suivi de la santé","Doit être précise et sécurisée","2024-08-01","2025-02-01",15
+"Migration vers le cloud","Migration de l'infrastructure IT vers une solution cloud","Migrer les systèmes existants vers le cloud","Doit être sans interruption de service","2024-09-01","2025-03-01",16
+"Système de gestion de la chaîne d'approvisionnement","Création d'un système pour gérer la chaîne d'approvisionnement","Développer un SCM","Doit être efficace et transparent","2024-10-01","2025-04-01",14

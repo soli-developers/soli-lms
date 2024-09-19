@@ -37,4 +37,4 @@ Un diagramme de Gantt sera utilisé pour représenter visuellement le planning d
 
 <!-- new slide --> 
 
-**[Insérer ici votre diagramme de Gantt,  en utilisant un outil en ligne ou un logiciel de gestion de projet] ** 
+![Diagramme de Gantt](/soli-lms/pkg_creation_projets/planification/images/gantt.png){:width="700px"}*Figure 6: Diagramme de Gantt*

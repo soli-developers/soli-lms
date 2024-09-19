@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\GestionProjets;
+namespace App\Exports\pkg_rh;
 
 use App\Models\GestionProjets\Projet;
 use Maatwebsite\Excel\Concerns\FromArray;
@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class ProjetExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
+class VilleExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     protected $data;
 
@@ -23,19 +23,15 @@ class ProjetExport implements FromCollection, WithHeadings, ShouldAutoSize, With
     public function headings(): array
     {
         return [
-            'nom',
-            'description',
-           
+            'nom',          
         ];
     }
 
     public function collection()
     {
-        return $this->data->map(function ($project) {
+        return $this->data->map(function ($Ville) {
             return [
-                'nom' => $project->nom, 
-                'description' => $project->description,
-               
+                'nom' => $Ville->nom,                
             ];
         });
     }

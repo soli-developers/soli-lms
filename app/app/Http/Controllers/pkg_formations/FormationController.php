@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\pkg_formations\FormationRequest;
 use App\Repositories\pkg_formations\FormationRepository;
+use App\Imports\pkg_formations\FormationsImport;
+use App\Exports\pkg_formations\FormationsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class FormationController extends Controller
 {
@@ -18,17 +22,11 @@ class FormationController extends Controller
 
     public function index(Request $request)
     {
-        $formationData = $this->formationRepository->paginate();
-        if ($request->ajax()) {
-            $searchValue = $request->get('searchValue');
-            if ($searchValue !== '') {
-                $searchQuery = str_replace(' ', '%', $searchValue);
-                $formationData = $this->formationRepository->searchData($searchQuery);
-                return view('GestionFormation.formations.index', compact('formationData'))->render();
-            }
-        }
+        $searchValue = $request->input('search');
+        $formationData = $this->formationRepository->searchData($searchValue, 2);
         return view('GestionFormation.Formation.index', compact('formationData'));
     }
+
 
     public function create()
     {  
@@ -46,7 +44,7 @@ class FormationController extends Controller
     public function show(Request $request, $id)
     {
         $formation = $this->formationRepository->find($id);
-        return view('formation.show', compact('formation'));
+        return view('GestionFormation.Formation.show', compact('formation'));
     }
 
     public function edit($id)
@@ -67,4 +65,23 @@ class FormationController extends Controller
         $this->formationRepository->destroy($id);
         return redirect()->route('formations.index')->with('success', 'La formation a été supprimée avec succès.');
     }
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xls,xlsx',
+        ]);
+    
+        try {
+            Excel::import(new FormationsImport, $request->file('file'));
+            return redirect()->route('Formations.index')->with('success', 'Les Formations ont été importés avec succès.');
+        } catch (\Exception $e) {
+            return redirect()->route('Formations.index')->with('error', 'Une erreur s\'est produite lors de l\'importation des Formations. Veuillez vérifier votre fichier Excel.');
+        }
+    }
+
+    public function export()
+    {
+        return Excel::download(new FormationsExport, 'Formations.xlsx'); // Add 'return' 
+    }
+
 }

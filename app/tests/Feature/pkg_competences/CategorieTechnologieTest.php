@@ -3,62 +3,65 @@
 namespace Tests\Feature\pkg_competences;
 
 use App\Models\pkg_competences\CategorieTechnologie;
-use App\Repositories\pkg_competences\categorietechnologieRepository;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CategorieTechnologieTest extends TestCase
 {
+    use DatabaseTransactions;
 
-    protected $categorietechnologieRepository;
+    protected $categorieTechnologie;
+
     protected function setUp(): void
     {
         parent::setUp();
-        $this->categorietechnologieRepository = new categorietechnologieRepository();
+        $this->categorieTechnologie = CategorieTechnologie::create([
+            'code' => 'TestCodeCategorie',
+            'nom' => 'TestNomCategorie',
+            'description' => 'TestDescriptionCategorie',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 
-
-    /**
-     * A basic feature test example.
-     */
-    public function test_create_CategorieTechnologie(): void
+    public function test_create_categorie_technologie(): void
     {
-        $data =[
-            'nom'=> "Développement GraphQL API",
-            'description'=> "Création et maintenance d'Interfaces de Programmation d'Applications, qui permettent à différents systèmes logiciels de communiquer entre eux. Les API RESTful et GraphQL sont des approches courantes.",
+        $data = [
+            'code' => 'TestCode',
+            'nom' => 'TestNom',
+            'description' => 'TestDescription',
+            'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'created_at' => Carbon::now()
         ];
 
-        $add_data = $this->categorietechnologieRepository->create($data);
-        $this->assertNotNull($add_data);
+        $categorieTechnologie = CategorieTechnologie::create($data);
+
+        $this->assertDatabaseHas('categorie_technologies', ['id' => $categorieTechnologie->id]);
     }
 
-
-    public function test_update_CategorieTechnologie(): void
+    public function test_read_categorie_technologie(): void
     {
-        $data =[
-            'nom'=> "Développement d'API",
-            'description'=> "Création et maintenance d'Interfaces de Programmation d'Applications, qui permettent à différents systèmes logiciels de communiquer entre eux. Les API RESTful et GraphQL sont des approches courantes.",
-            'updated_at' => Carbon::now(),
-            'created_at' => Carbon::now()
-        ];
+        $categorieTechnologie = CategorieTechnologie::find($this->categorieTechnologie->id);
 
-        $update_data = $this->categorietechnologieRepository->update(1,$data);
-        $this->assertNotNull($update_data);
+        $this->assertNotNull($categorieTechnologie);
+        $this->assertEquals($this->categorieTechnologie->id, $categorieTechnologie->id);
     }
 
-    public function test_delete_CategorieTechnologie(): void
+    public function test_update_categorie_technologie(): void
     {
-        $update_data = $this->categorietechnologieRepository->destroy(4);
-        $this->assertNotNull($update_data);
+        $newName = 'UpdatedNom';
+        $this->categorieTechnologie->update(['nom' => $newName, 'updated_at' => Carbon::now()]);
+
+        $this->assertEquals($newName, $this->categorieTechnologie->fresh()->nom);
     }
 
-    public function test_paginate_CategorieTechnologie(): void
+    public function test_delete_categorie_technologie(): void
     {
-        $update_data = $this->categorietechnologieRepository->paginate();
-        $this->assertNotNull($update_data);
+        $this->categorieTechnologie->delete();
+
+        $this->assertDatabaseMissing('categorie_technologies', ['id' => $this->categorieTechnologie->id]);
     }
+
+    
 }

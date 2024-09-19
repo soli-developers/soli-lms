@@ -17,7 +17,7 @@
                             @include('GestionFormation.Formation.fields')
                         </div>
                         <div class="card-footer">
-                            <form action="{{ route('formations.edit', $formation->id) }}" method="GET">
+                            <form action="{{ route('formations.update', $dataToEdit->id) }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn btn-link">
                                     <i class="nav-icon fas fa-table"></i> {{ __('app.edit') }}

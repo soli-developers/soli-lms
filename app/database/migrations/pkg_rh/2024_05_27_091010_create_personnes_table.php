@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('nom_arab');
             $table->string('prenom_arab');
             $table->date('date_naissance');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('tele_num');
             $table->string('rue');
             $table->string('cin');
             $table->unsignedBigInteger('ville_id');
-            $table->string('profile_image');
+            $table->string('profile_image')->default('default_profile_image.png');
             $table->string('cne')->nullable();
+            $table->string('_token');
             $table->Date('date_inscription')->nullable();
             $table->unsignedBigInteger('lieu_naissance_id')->nullable();
             $table->unsignedBigInteger('niveau_scolaire_id')->nullable();

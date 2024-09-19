@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title', __('app.show') . ' ' . __('GestionTasks/task/message.titre'))
+
+@section('title', __('app.show') . ' ' . __('pkg_competences/technologies.singular'))
+
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
@@ -29,30 +31,15 @@
                                 <p>{{ $fetchedData->nom }}</p>
                             </div>
 
-                            <div class="col-sm-12">
-                                <label for="nom">{{ __('pkg_competences/technologie.competence') }}:</label>
-                                <p>{{ $fetchedData->competence->nom }}</p>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <label
-                                    for="nom">{{ __('pkg_competences/technologie.categorie_technologies') }}:</label>
-                                <p>{{ $fetchedData->categorieTechnologie->nom }}</p>
-                            </div>
-
                             <!-- Description Field -->
                             <div class="col-sm-12">
                                 <label for="description">{{ __('app.description') }}:</label>
                                 @if ($fetchedData->description)
-                                    <p>
-                                        {!! $fetchedData->description !!}
-                                    </p>
+                                    <p>{!! $fetchedData->description !!}</p>
                                 @else
                                     <p class="text-secondary">Aucune information disponible</p>
                                 @endif
                             </div>
-
-
                         </div>
                     </div>
                 </div>

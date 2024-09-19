@@ -18,7 +18,9 @@ class CompetenceRepository extends BaseRepository
      * @var array
      */
     protected $fieldsSearchable = [
-        'name'
+        'code',
+        'name',
+        'description'
     ];
 
     /**
@@ -47,17 +49,25 @@ class CompetenceRepository extends BaseRepository
      * @throws CompetenceAlreadyExistException If the competence already exists.
      */
     public function create(array $data)
-    {
-        $nom = $data['nom'];
+{
 
-        $existingCompetence = $this->model->where('nom', $nom)->exists();
 
-        if ($existingCompetence) {
-            throw new CompetenceAlreadyExistException("Competence already exists.");
-        } else {
-            return parent::create($data);
-        }
+    $code = $data['code'] ++  ;
+    
+    $nom = $data['nom'];
+    $description = $data['description'];
+
+    $existingCompetence = $this->model->where('code', $code)->exists();
+    $existingCompetence = $this->model->where('nom', $nom)->exists();
+    $existingCompetence = $this->model->where('description', $description)->exists();
+
+    if ($existingCompetence) {
+        throw new CompetenceAlreadyExistException("Competence already exists.");
+    } else {
+        return parent::create($data);
     }
+}
+
 
     /**
      * Search competences based on specified criteria.
@@ -69,8 +79,10 @@ class CompetenceRepository extends BaseRepository
     public function searchData($searchableData, $perPage = 4)
     {
         return $this->model->where(function ($query) use ($searchableData) {
-            $query->where('nom', 'like', '%' . $searchableData . '%')
+            $query->where('code', 'like', '%' . $searchableData . '%')
+                ->orWhere('nom', 'like', '%' . $searchableData . '%')
                 ->orWhere('description', 'like', '%' . $searchableData . '%');
+
         })->paginate($perPage);
     }
 }

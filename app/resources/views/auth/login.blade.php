@@ -24,7 +24,7 @@
         <div class="login-box">
             <div class="login-logo">
                 <img src="{{ asset('images/logo.png') }}" alt="" srcset="" width="90px">
-                <h4>Lab CRUD</h4>
+                <h4>SoliLMS</h4>
             </div>
             <!-- /.login-logo -->
 

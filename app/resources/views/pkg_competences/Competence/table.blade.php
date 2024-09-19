@@ -2,6 +2,7 @@
     <table class="table table-striped text-nowrap">
         <thead>
             <tr>
+                <th>{{ __('Code') }}</th>
                 <th>{{ __('pkg_competences/competence.singular') }}</th>
 
                 <th class="text-center">{{ __('app.action') }}</th>
@@ -10,7 +11,8 @@
         <tbody>
             @foreach ($competenceData as $competence)
                 <tr>
-                    <td>{!! Str::limit($competence->nom, 100) !!}</td>
+                    <td>{!! Str::limit($competence->code, 20) !!}</td>
+                    <td>{!! Str::limit($competence->nom, 80) !!}</td>
 
                     <td class="text-center">
                         @can('show-CompetenceController')
@@ -51,7 +53,7 @@
                     <i class="fas fa-file-download"></i>
                     {{ __('app.import') }}
                 </label>
-                <input type="file" id="upload" name="file" style="display:none;"  />
+                <input type="file" id="upload" name="file" style="display:none;" onchange="submitForm()"  />
             </form>
         @endcan
         @can('export-CompetenceController')
@@ -65,3 +67,10 @@
         {{ $competenceData->onEachSide(1)->links() }}
     </ul>
 </div>
+
+
+<script>
+    function submitForm() {
+        document.getElementById("importForm").submit();
+    }
+</script>

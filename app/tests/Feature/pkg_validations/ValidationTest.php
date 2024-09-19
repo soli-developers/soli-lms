@@ -38,7 +38,6 @@ class ValidationTest extends TestCase
         ];
 
         $validation = $this->validationsRepository->createWithMessage($data);
-
         $this->assertDatabaseHas('validations', [
             'note' => $data['note'],
             'transfert_competence_id' => $data['transfert_competence_id'],

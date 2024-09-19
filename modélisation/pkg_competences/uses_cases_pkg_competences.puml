@@ -8,15 +8,17 @@ actor Responsable_de_formation as Responsable_de_formation
 
 package pkg_competences {
 
-  formateur --  (Gestion des compétences) 
+   
   formateur --  (Gestion des niveaux de compétences) 
   formateur --  (Gestion des technologies) 
   formateur --  (Gestion des catégories des technologies)
+  formateur --  (Gestion des appreciation)
+  formateur --  (Gestion des compétences)
 
   Responsable_de_formation --  (Gestion des compétences)
   Responsable_de_formation --  (Gestion des modules)
   Responsable_de_formation --  (Gestion des filière)
-  Responsable_de_formation --  (Lire les guite des compéteneces et des modules)
+  
 
 
   (Gestion des technologies) <..  (Ajouter) : <<extend>>

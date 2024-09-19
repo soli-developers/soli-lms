@@ -128,6 +128,14 @@
                           <i class="fas fa-check"></i> Valider
                         </a>
                       </td>
+
+                      <td >
+                                            <a href="./show.php" class="btn btn-default btn-sm">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+    
+                                      
+                                    </td>
                     </tr>
                     <tr>
                       <td class="nom-brief">lab-crud-standard</td>
@@ -144,6 +152,13 @@
                           <i class="fas fa-check"></i> Valider
                         </a>
                       </td>
+                      <td >
+                                            <a href="./show.php" class="btn btn-default btn-sm">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+    
+                                      
+                                    </td>
                     </tr>
                     <tr>
                       <td class="nom-brief">lab-rapport</td>
@@ -160,6 +175,13 @@
                           <i class="fas fa-check"></i> Valider
                         </a>
                       </td>
+                      <td >
+                                            <a href="./show.php" class="btn btn-default btn-sm">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+    
+                                      
+                                    </td>
                     </tr>
                     <tr>
                       <td class="nom-brief">lab-autorisation</td>
@@ -175,6 +197,14 @@
                           <i class="fas fa-check"></i> Valider
                         </a>
                       </td>
+
+                      <td >
+                                            <a href="./show.php" class="btn btn-default btn-sm">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+    
+                                      
+                                    </td>
                     </tr>
                   </tbody>
                 </table>

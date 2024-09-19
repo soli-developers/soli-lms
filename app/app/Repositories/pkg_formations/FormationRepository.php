@@ -6,6 +6,9 @@ use App\Exceptions\GestionFormations\FormationAlreadyExistException;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\pkg_formations\Formation;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+
 
 class FormationRepository extends BaseRepository
 {
@@ -49,10 +52,14 @@ class FormationRepository extends BaseRepository
             $formation = parent::create($data);
     
             // Vérifie si le lien est présent dans les données et l'associe à la formation
-            if (isset($data['lien'])) {
+        
                 $formation->lien = $data['lien'];
+                $formation->lien1 = $data['lien1'];
                 $formation->save();
-            }
+    
+
+
+    
     
             // Vérifie si le formateur_id est présent dans les données et l'associe à la formation
             if (isset($data['formateur_id'])) {
@@ -110,13 +117,17 @@ class FormationRepository extends BaseRepository
      * @param int $perPage Nombre d'éléments par page.
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function searchData($searchableData, $perPage = 4)
-    {
-        return $this->model->where(function ($query) use ($searchableData) {
-            $query->where('nom', 'like', '%' . $searchableData . '%')
-                ->orWhere('description', 'like', '%' . $searchableData . '%');
-        })->paginate($perPage);
-    }
+    public function searchData($searchableData, $perPage = 10)
+{
+    return $this->model->where(function ($query) use ($searchableData) {
+        $query->where('nom', 'like', '%' . $searchableData . '%')
+            ->orWhere('description', 'like', '%' . $searchableData . '%');
+    })->paginate($perPage);
+}
+    
+    // Other methods...
+
+    
 
     
 

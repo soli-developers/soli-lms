@@ -1,0 +1,10 @@
+name,guard_name
+index-TechnologieController,web
+show-TechnologieController,web
+create-TechnologieController,web
+store-TechnologieController,web
+edit-TechnologieController,web
+update-TechnologieController,web
+destroy-TechnologieController,web
+export-TechnologieController,web
+import-TechnologieController,web

@@ -8,6 +8,6 @@ class ApprenantException extends Exception
 {
     public static function AlreadyExistApprenant()
     {
-        return new self('Apprenant deja exist');
+        return new self(__('pkg_rh/Apprenant.singular') . ' est deja exist');
     }
 }

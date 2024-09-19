@@ -23,4 +23,7 @@ Au deuxième sprint, notre travail s'est concentré sur la version mobile de l'a
 
 Un diagramme de Gantt est un outil de gestion de projet qui montre la planification de toutes les tâches d'un projet sur une ligne de temps. 
 
+![Diagramme de Gantt ](/soli-lms/pkg_competences/planification/images/Gantt_Diagramme.png){:width="700px"}*figure: Diagramme de Gantt *
+
+
 <!-- new slide -->

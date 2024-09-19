@@ -62,18 +62,50 @@ class ProjetRepository extends BaseRepository
         }
     }
 
-    /**
+   /**
      * Recherche les projets correspondants aux critères spécifiés.
      *
      * @param mixed $searchableData Données de recherche.
      * @param int $perPage Nombre d'éléments par page.
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function searchData($searchableData, $perPage = 4)
-    {
-        return $this->model->where(function ($query) use ($searchableData) {
-            $query->where('titre', 'like', '%' . $searchableData . '%')
-                ->orWhere('description', 'like', '%' . $searchableData . '%');
-        })->paginate($perPage);
-    }
+
+     public function searchData($searchableData, $perPage = 2)
+     {
+         return $this->model->where(function ($query) use ($searchableData) {
+             $query->where('titre', 'like', '%' . $searchableData . '%'); // Only searches 'titre'
+         })->paginate($perPage);
+     }
+
+     public function filterByCompetence($competenceId)
+     {
+         return $this->model->whereHas('transfertCompetences', function ($query) use ($competenceId) {
+             $query->where('competence_id', $competenceId);
+         })->paginate();
+     }
+
+     public function filterAndSearch($competenceId, $searchValue)
+     {
+         $query = $this->model->newQuery();
+
+         if ($competenceId !== null) {
+             $query->whereHas('transfertCompetences', function ($q) use ($competenceId) {
+                 $q->where('competence_id', $competenceId);
+             });
+         }
+
+         if ($searchValue !== '') {
+             $searchQuery = '%' . str_replace(' ', '%', $searchValue) . '%';
+             $query->where(function ($q) use ($searchQuery) {
+                 $q->where('titre', 'like', $searchQuery)
+                     ->orWhereHas('transfertCompetences.competence', function ($q) use ($searchQuery) {
+                         $q->where('nom', 'like', $searchQuery);
+                     });
+             });
+         }
+
+         return $query->paginate(2);
+     }
+
+
 }

@@ -8,16 +8,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SoliLMS') }}</title>
 
     <!-- TODO : à importer dans app.css -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    @vite(['resources/css/pkg_creation_projets/pkg_creation_projets.css', 'resources/js/pkg_creation_projets/pkg_creation_projets.js'])
+    {{-- @vite(['resources/css/pkg_creation_projets/pkg_creation_projets.css', 'resources/js/pkg_creation_projets/pkg_creation_projets.js']) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -46,10 +47,10 @@
                             <img src="{{ asset('images/man.png') }}" class="user-image img-circle elevation-2"
                                 alt="User Image">
                             <!--  <p>
-                               
+
                                 <small>Member since </small>
                             </p> -->
-                        </li> 
+                        </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -79,11 +80,29 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Droits d'auteur © 2024-2025 <a href="#" class="text-info">LAB CRUD</a>.</strong> Tous droits
+            <strong>Droits d'auteur © 2023-2024 <a href="#" class="text-info">SoliLMS</a>.</strong> Tous droits
             réservés.
         </footer>
     </div>
     <script>
+        let tableForm = document.getElementById('tableForm');
+
+        function showLoading() {
+            if (tableForm) {
+                let loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loading';
+                loadingDiv.innerHTML = '<div class="spinner"></div>';
+                tableForm.appendChild(loadingDiv);
+            }else{
+                return false;
+            }
+        }
+        function hideLoading() {
+            let loadingDiv = document.getElementById('loading');
+            loadingDiv.remove();
+        }
+
+
         // Add functionality for "Add Another Deliverable" button
         const addDeliverableButton = document.getElementById("addDeliverable");
         const deliverableForm = document.getElementById("deliverableForm");
@@ -160,6 +179,10 @@
         });
 
     </script>
+
+<script>
+    CKEDITOR.replace('editor');
+</script>
     <script>
         // Get references to elements
         const addLinkButtons = document.querySelectorAll('.add-link-btn');

@@ -23,6 +23,7 @@ class CompetenceExport implements FromCollection, WithHeadings, ShouldAutoSize, 
     public function headings(): array
     {
         return [
+            'code',
             'nom',
             'description',
 
@@ -33,6 +34,7 @@ class CompetenceExport implements FromCollection, WithHeadings, ShouldAutoSize, 
     {
         return $this->data->map(function ($competence) {
             return [
+                'code' => $competence->code,
                 'nom' => $competence->nom,
                 'description' => $competence->description,
 

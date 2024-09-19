@@ -5,10 +5,10 @@ package: pkg_rh
 order: 225
 ---
 
-# Besoin
 
-## Context de Projet
+# Context de Projet
 
+## Cahier de Charge
 
 ## Objectifs de formation
 
@@ -25,10 +25,9 @@ En plus des aspects techniques, cette formation intègre des méthodologies de g
 - Appliquer les principes et pratiques de la méthodologie Agile et du framework Scrum pour la gestion de projets.
 - Collaborer efficacement avec des équipes de développement, en utilisant des outils de versionnement et de gestion de projet.
 
+# Processus de Développement
 
-## Processus de Développement
-
-### Méthode 2TUP
+## Méthode 2TUP
 
 ![Méthode 2TUP](./images/2TUP.png){:width="70%"}
 *Figure: Méthode 2TUP*

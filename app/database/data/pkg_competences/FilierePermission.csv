@@ -1,0 +1,10 @@
+name,guard_name
+index-FiliereController,web
+show-FiliereController,web
+create-FiliereController,web
+store-FiliereController,web
+edit-FiliereController,web
+update-FiliereController,web
+destroy-FiliereController,web
+export-FiliereController,web
+import-FiliereController,web

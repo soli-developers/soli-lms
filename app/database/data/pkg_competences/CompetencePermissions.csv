@@ -1,0 +1,10 @@
+name,guard_name
+index-CompetenceController,web
+show-CompetenceController,web
+create-CompetenceController,web
+store-CompetenceController,web
+edit-CompetenceController,web
+update-CompetenceController,web
+destroy-CompetenceController,web
+export-CompetenceController,web
+import-CompetenceController,web

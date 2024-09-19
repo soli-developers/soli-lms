@@ -50,9 +50,29 @@
             "name": "maquettes"
         },
         {
-            "path": "./collaboration",
+            "path": "./app/database/data",
             "name": "collaboration"
-        }
+        },
+        {
+            "path": "./app/app/Exceptions/pkg_competences",
+            "name": "Exceptions"
+        },
+        {
+            "path": "./app/app/Exports/pkg_competences",
+            "name": "Exports"
+        },
+        {
+            "path": "./app/app/Imports/pkg_competences",
+            "name": "Imports"
+        },
+        {
+            "path": "./app/routes/pkg_competences",
+            "name": "routes"
+        },
+        {
+            "path": "./app/tests/Feature/pkg_competences",
+            "name": "routes"
+        },
     ],
     "settings": {
         "todo-tree.general.showActivityBarBadge": true,

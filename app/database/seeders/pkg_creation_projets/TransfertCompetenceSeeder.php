@@ -27,7 +27,6 @@ class TransfertCompetenceSeeder extends Seeder
                     'projet_id' => $data[0],
                     'competence_id' => $data[1],
                     'appreciation_id' => $data[2],
-                    'technologie_id' => $data[3],
                 ]);
             }
             $firstline = false;

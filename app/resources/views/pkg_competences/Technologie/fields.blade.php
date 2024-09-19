@@ -15,21 +15,21 @@
         </div>
 
         <div class="form-group">
-            <label for="competence_id">{{ __('pkg_competences/competence.plural') }}
+            <label for="technologies_id">{{ __('pkg_competences/technologies.plural') }}
                 <span class="text-danger">*</span></label>
-            <select name="competence_id" class="form-control" id="exampleInputProject">
+            <select name="technologies_id" class="form-control" id="exampleInputProject">
                 @if (isset($dataToEdit))
-                    <option value="{{ $dataToEdit->id }}">{{ $dataToEdit->competence->nom }}</option>
+                    <option value="{{ $dataToEdit->id }}">{{ $dataToEdit->technologies->nom }}</option>
                 @else
-                    <option value="">Choisir un Competence</option>
+                    <option value="">Choisir un technologies</option>
                 @endif
-                @foreach ($Competence as $item)
+                @foreach ($TechnologieData as $item)
                     @if (!isset($dataToEdit) || !$dataToEdit->nom || $item->id !== $dataToEdit->competence->id)
                         <option value="{{ $item->id }}">{{ $item->nom }}</option>
                     @endif
                 @endforeach
             </select>
-            @error('competence_id')
+            @error('technologies_id')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
 

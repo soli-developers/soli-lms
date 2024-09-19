@@ -39,3 +39,38 @@ class CategorieTechnologieSeeder extends Seeder
         fclose($csvFile);
     }
 }
+
+
+// ==========================================================
+        // =========== Add Seeder Permission Assign Role ============
+        // ==========================================================
+        $FormateurRole = Role::where('name', User::FORMATEUR)->first();
+        $ApprenantRole = Role::where('name', User::APPRENANT)->first();
+
+        $csvFile = fopen(base_path("database/data/pkg_competences/CategorieTechnologiePermissions.csv"), "r");
+        $firstline = true;
+        while (($data = fgetcsv($csvFile)) !== FALSE) {
+            if (!$firstline) {
+                Permission::create([
+                    "name" => $data['0'],
+                    "guard_name" => $data['1'],
+                ]);
+
+                if ($FormateurRole) {
+                    // If the role exists, update its permissions
+                    $FormateurRole->givePermissionTo($data['0']);
+                } 
+
+
+                if ($ApprenantRole) {
+                    // If the role exists, update its permissions
+                    if (in_array($data['0'], ['index-CategorieTechnologieController', 'show-CategorieTechnologieController', 'export-CategorieTechnologieController','create-CategorieTechnologieController','store-CategorieTechnologieController','edit-CategorieTechnologieController','update-CategorieTechnologieController','destroy-CategorieTechnologieController','import-CategorieTechnologieController'] )) {
+                        $ApprenantRole->givePermissionTo($data['0']);
+                    }
+                } 
+            }
+            $firstline = false;
+        }
+        fclose($csvFile);
+
+

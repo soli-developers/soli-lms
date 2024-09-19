@@ -1,0 +1,10 @@
+name,guard_name
+index-AppreciationController,web
+show-AppreciationController,web
+create-AppreciationController,web
+store-AppreciationController,web
+edit-AppreciationController,web
+update-AppreciationController,web
+destroy-AppreciationController,web
+export-AppreciationController,web
+import-AppreciationController,web

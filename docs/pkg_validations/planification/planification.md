@@ -15,5 +15,5 @@ Pour assurer la réussite de notre projet, il est impératif de créer un plan d
 
 Un diagramme de Gantt est un outil de gestion de projet qui montre la planification de toutes les tâches d'un projet sur une ligne de temps. 
 
-![Diagramme de Gantt](/soli-lms/pkg_validations/planification/images/gant.png){:width="700px"}*Figure 6: Diagramme de Gantt*
+![Diagramme de Gantt](/soli-lms/diagrammes/pkg_validations/diagrammeGant.svg){:width="700px"}*Figure 6: Diagramme de Gantt*
  
