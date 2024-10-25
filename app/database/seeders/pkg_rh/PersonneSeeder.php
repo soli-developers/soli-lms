@@ -52,7 +52,10 @@ class PersonneSeeder extends Seeder
             $lieu_naissance_id = $data['16'] == 'NULL' ? null : $data['16'];
             $specialite_id = $data['18'] == 'NULL' ? null : $data['18'];
 
+           
+
             if (!$firstline) {
+                
                 $user = User::create([
                     "email"=>$data['4'],
                     'password' => Hash::make($data['5']),

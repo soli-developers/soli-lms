@@ -1,6 +1,8 @@
 # soli-lms
 
-## Guide de Démarrage pour prototype 
+<!-- TODO : Description de projet SoliLMS -->
+
+## Guide d'installation
 
 1. Ouvrez votre terminal.
 2. Accédez au répertoire app
@@ -64,6 +66,11 @@ php artisan serve
 npm run dev
 ```
 
+ou 
+
+```bash
+npm run build
+```
 ## Login
 
 ## Exécution du Serveur de Maquettage Spécial du Projet
