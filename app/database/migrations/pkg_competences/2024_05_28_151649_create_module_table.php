@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('module', function (Blueprint $table) {
             $table->id();
-            $table->string('N');
+            $table->string('N')->unique();
             $table->string('nom');
             $table->text('description');
             $table->float('masse_horaire');
             $table->unsignedBigInteger('filiere_id');
-            $table->foreign('filiere_id')->references('id')->on('filiere')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('id')->on('filieres')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,5 +32,3 @@ return new class extends Migration
         Schema::dropIfExists('module');
     }
 };
-
-

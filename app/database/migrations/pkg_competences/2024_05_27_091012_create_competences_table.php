@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('competences', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('nom');
             $table->text('description')->nullable();
+            $table->unsignedBigInteger('module_id'); 
+            $table->foreign('module_id')->references('id')->on('module')->onDelete('cascade');
             $table->timestamps();
         });
     }
